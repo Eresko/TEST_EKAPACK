@@ -21,6 +21,9 @@ EKAPACK — это тестовое задание на Laravel 12, обеспе
 4. **ekapack_queue** – обработчик очередей Laravel.
 
 ---
+## OPENAPI
+
+ {url}/openapi#/
 
 ## Быстрый старт (Docker)
 
@@ -60,3 +63,5 @@ docker exec -it laravel_php php artisan db:seed
 9. **Очереди**
 docker exec -it laravel_queue php artisan queue:work --sleep=3 --tries=3 --timeout=90
 
+10. **Геренация OPENAPI**
+docker exec -it laravel_php php artisan swagger:generate

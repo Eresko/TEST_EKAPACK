@@ -12,13 +12,18 @@ class SwaggerGenerate extends Command
 
     public function handle()
     {
+        try {
+            $generator = new Generator();
+            $openapi = $generator->generate([
+                app_path('Http/Controllers'),
+            ]);
+            
+            $outputFile = public_path('swagger.json');
+            file_put_contents($outputFile, $openapi->toJson());
 
-        $openapi = Generator::scan([
-            app_path('Http/Controllers/Api'), // сканируем только API-контроллеры
-            app_path('Swagger/SwaggerInfo.php') // добавляем Info
-        ]);
-        $outputFile = public_path('swagger.json');
-        file_put_contents($outputFile, $openapi->toJson());
-        $this->info('Swagger JSON generated: ' . $outputFile);
+            $this->info('Swagger JSON generated: ' . $outputFile);
+        } catch (\Exception $e) {
+            $this->error("Error generating Swagger: " . $e->getMessage());
+        }
     }
 }
