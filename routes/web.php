@@ -7,6 +7,6 @@ Route::get('/', function () {
 });
 
 
-Route::get('/api/docs', function () {
+Route::get('/openapi', function () {
     return view('swagger');
 });
